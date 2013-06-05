@@ -9,18 +9,18 @@ module.exports = Generator;
 
 function Generator() {
   ScriptBase.apply(this, arguments);
-  this.hookFor('angular:controller');
-  this.hookFor('angular:view');
+  this.hookFor('angular-rails:controller');
+  this.hookFor('angular-rails:view');
 }
 util.inherits(Generator, ScriptBase);
 
 Generator.prototype.rewriteAppJs = function () {
   if (this.env.options.coffee) {
     angularUtils.rewriteFile({
-      file: path.join(this.env.options.appPath, 'scripts/app.coffee'),
-      needle: '.otherwise',
+      file: path.join(this.env.options.appPath, 'scripts/config/routes.coffee'),
+      needle: 'ROUTER.otherwise',
       splicable: [
-        '.when \'/' + this.name + '\',',
+        'ROUTER.when \'' + this.name + '\', \'/' + this.name + '\',',
         '  templateUrl: \'views/' + this.name + '.html\',',
         '  controller: \'' + this._.classify(this.name) + 'Ctrl\''
       ]
@@ -28,13 +28,13 @@ Generator.prototype.rewriteAppJs = function () {
   }
   else {
     angularUtils.rewriteFile({
-      file: path.join(this.env.options.appPath, 'scripts/app.js'),
-      needle: '.otherwise',
+      file: path.join(this.env.options.appPath, 'scripts/config/routes.js'),
+      needle: 'ROUTER.otherwise',
       splicable: [
-        '.when(\'/' + this.name + '\', {',
+        'ROUTER.when(\'' + this.name + '_path\', \'/' + this.name + '\', {',
         '  templateUrl: \'views/' + this.name + '.html\',',
         '  controller: \'' + this._.classify(this.name) + 'Ctrl\'',
-        '})'
+        '});'
       ]
     });
   }

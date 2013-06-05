@@ -1,10 +1,27 @@
 'use strict';
 
 angular.module('<%= _.camelize(appname) %>App')
-  .controller('<%= _.classify(name) %>Ctrl', function ($scope) {
-    $scope.awesomeThings = [
+.controller('<%= _.classify(name) %>Ctrl', function ($scope) {
+
+  // Private
+  var privateFunction = function() {
+    return true;
+  };
+
+  // Scope
+
+  angular.extend($scope, {
+
+    awesomeThings: [
       'HTML5 Boilerplate',
       'AngularJS',
       'Karma'
-    ];
+    ],
+
+    scopeFunction: function() {
+      return privateFunction();
+    }
+
   });
+
+});

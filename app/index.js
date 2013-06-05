@@ -48,7 +48,7 @@ var Generator = module.exports = function Generator(args, options) {
     args: args
   });
 
-  this.hookFor('angular-rails:controller', {
+  this.hookFor('angular-rails:route', {
     args: args
   });
 
