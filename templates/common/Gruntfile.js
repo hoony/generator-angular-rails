@@ -12,7 +12,8 @@ module.exports = function (grunt) {
   // configurable paths
   var yeomanConfig = {
     app: 'app',
-    dist: 'dist'
+    dist: 'dist',
+    distRails: 'dist-rails'
   };
 
   try {
@@ -90,6 +91,16 @@ module.exports = function (grunt) {
             '.tmp',
             '<%%= yeoman.dist %>/*',
             '!<%%= yeoman.dist %>/.git*'
+          ]
+        }]
+      },
+      distRails: {
+        files: [{
+          dot: true,
+          src: [
+            '.tmp',
+            '<%%= yeoman.distRails %>/*',
+            '!<%%= yeoman.distRails %>/.git*'
           ]
         }]
       },
@@ -262,6 +273,49 @@ module.exports = function (grunt) {
             'styles/fonts/*'
           ]
         }]
+      },
+      distRails: {
+        files: [{
+          // Templates
+          expand: true,
+          cwd: '<%= yeoman.app %>/views',
+          dest: '<%= yeoman.distRails %>/app/assets/templates',
+          src: [
+            '**'
+          ]
+        },{
+          // Styles
+          expand: true,
+          cwd: '<%= yeoman.app %>/styles',
+          dest: '<%= yeoman.distRails %>/app/assets/stylesheets',
+          src: [
+            '**'
+          ]
+        },{
+        // Images
+          expand: true,
+          cwd: '<%= yeoman.app %>/images',
+          dest: '<%= yeoman.distRails %>/app/assets/images',
+          src: [
+            '**'
+          ]
+        },{
+        // Libraries (components)
+          expand: true,
+          cwd: '<%= yeoman.app %>/bower_components',
+          dest: '<%= yeoman.distRails %>/app/assets/javascripts/lib',
+          src: [
+            '**'
+          ]
+        },{
+        // Angular JS files
+          expand: true,
+          cwd: '<%= yeoman.app %>/scripts',
+          dest: '<%= yeoman.distRails %>/app/assets/javascripts/angular',
+          src: [
+            '**'
+          ]
+        }]
       }
     }
   });
@@ -294,12 +348,19 @@ module.exports = function (grunt) {
     'imagemin',
     'cssmin',
     'htmlmin',
-    'copy',
+    'copy:dist',
     'cdnify',
     'ngmin',
     'uglify',
     'rev',
     'usemin'
+  ]);
+
+  grunt.registerTask('build-rails', [
+    'clean:distRails',
+    'jshint',
+    'test',
+    'copy:distRails'
   ]);
 
   grunt.registerTask('default', ['build']);
