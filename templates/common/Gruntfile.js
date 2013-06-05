@@ -278,40 +278,56 @@ module.exports = function (grunt) {
         files: [{
           // Templates
           expand: true,
-          cwd: '<%= yeoman.app %>/views',
-          dest: '<%= yeoman.distRails %>/app/assets/templates',
+          cwd: '<%%= yeoman.app %>/views',
+          dest: '<%%= yeoman.distRails %>/app/assets/templates',
           src: [
             '**'
           ]
         },{
           // Styles
           expand: true,
-          cwd: '<%= yeoman.app %>/styles',
-          dest: '<%= yeoman.distRails %>/app/assets/stylesheets',
+          cwd: '<%%= yeoman.app %>/styles',
+          dest: '<%%= yeoman.distRails %>/app/assets/stylesheets',
           src: [
             '**'
           ]
         },{
         // Images
           expand: true,
-          cwd: '<%= yeoman.app %>/images',
-          dest: '<%= yeoman.distRails %>/app/assets/images',
+          cwd: '<%%= yeoman.app %>/images',
+          dest: '<%%= yeoman.distRails %>/app/assets/images',
           src: [
             '**'
           ]
         },{
         // Libraries (components)
           expand: true,
-          cwd: '<%= yeoman.app %>/bower_components',
-          dest: '<%= yeoman.distRails %>/app/assets/javascripts/lib',
+          cwd: '<%%= yeoman.app %>/bower_components',
+          dest: '<%%= yeoman.distRails %>/app/assets/javascripts/lib',
           src: [
             '**'
           ]
         },{
         // Angular JS files
           expand: true,
-          cwd: '<%= yeoman.app %>/scripts',
-          dest: '<%= yeoman.distRails %>/app/assets/javascripts/angular',
+          cwd: '<%%= yeoman.app %>/scripts',
+          dest: '<%%= yeoman.distRails %>/app/assets/javascripts/angular',
+          src: [
+            '**'
+          ]
+        },{
+        // Test config files
+          expand: true,
+          cwd: '',
+          dest: '<%%= yeoman.distRails %>/spec/javascripts/config',
+          src: [
+            'karma*'
+          ]
+        },{
+        // Test files
+          expand: true,
+          cwd: 'test',
+          dest: '<%%= yeoman.distRails %>/spec/javascripts',
           src: [
             '**'
           ]
