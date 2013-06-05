@@ -13,7 +13,7 @@ This project is completely based on [generator-angular](https://github.com/yeoma
 * Add an extra service type: `resource`
 * [WIP] Modify Coffeescript templates
 * [WIP] Add more options in app creation
-* [WIP] Add a Rails builder task for Grunt so it generates a `rails-dist` folder ready to be included into the assets-pipeline
+* Add a Rails builder task for Grunt so it generates a `distRails` folder ready to be included into the assets-pipeline
 * [WIP] Add a HAML version of views
 
 ## Install
@@ -35,6 +35,10 @@ yo angular-rails --minsafe
 npm install
 bower install
 grunt
+```
+Build your rails-ready project running
+```
+grunt build-rails
 ```
 
 ## Usage
